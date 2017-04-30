@@ -1,8 +1,7 @@
-
-from Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
-from ActiveCampaign import ActiveCampaign
+from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
+from includes.ActiveCampaign import ActiveCampaign
 import json
-import urllib2, urllib
+import urllib
 
 class User(ActiveCampaign):
 
@@ -14,35 +13,35 @@ class User(ActiveCampaign):
     def add(self, params, post_data):
         request_url = '%s&api_action=user_add&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
-        response = json.loads(urllib2.urlopen(req).read())
+        req = urllib.request.Request(request_url, post_data)
+        response = json.loads(urllib.request.urlopen(req).read())
         return response
         
     def delete_list(self, params, post_data = {}):
         request_url = '%s&api_action=user_delete_list&api_output=%s&%s' % (self.url, self.output, params)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
         
     def delete(self, params, post_data = {}):
         request_url = '%s&api_action=user_delete&api_output=%s&%s' % (self.url, self.output, params)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
         
     def edit(self, params, post_data):
         request_url = '%s&api_action=user_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
-        response = json.loads(urllib2.urlopen(req).read())
+        req = urllib.request.Request(request_url, post_data)
+        response = json.loads(urllib.request.urlopen(req).read())
         return response
         
     def list_(self, params, post_data = {}):
         request_url = '%s&api_action=user_list&api_output=%s&%s' % (self.url, self.output, params)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
         
     def me(self, params, post_data = {}):
         request_url = '%s&api_action=user_me&api_output=%s' % (self.url, self.output)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
 
     def view(self, params, post_data = {}):
@@ -53,7 +52,7 @@ class User(ActiveCampaign):
         elif params.startswith('id='):
             action = 'user_view'
         request_url = '%s&api_action=%s&api_output=%s&%s' % (self.url, action, self.output, params)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 
-from Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
-from Connector import Connector
+from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
+from includes.Connector import Connector
+from importlib import import_module
 
 class ActiveCampaign(Connector):
 
@@ -40,7 +41,7 @@ class ActiveCampaign(Connector):
             component = 'auth'
 
         class1 = '%s' % component.capitalize() # IE: "subscriber" becomes "Subscriber"
-        source_module = __import__(class1, globals(), locals(), [], -1) # import Subscriber
+        source_module = import_module('.'+class1, 'includes') # import Subscriber
         class1 = getattr(source_module, class1) # get Subscriber
         class1 = class1(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY) # Subscriber()
         # subscriber.view()
