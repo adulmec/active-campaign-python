@@ -16,7 +16,6 @@ api_key = '<your api_key>'
 
 ac = ActiveCampaign(base_url,  api_key)
 print(ac.api('account/view'))
-
 </pre>
 
 Each of the endpoint subclasses have comments at the bottom
