@@ -23,3 +23,5 @@ Each of the endpoint subclasses have comments at the bottom
 ## Prerequisites
 
 1. A valid ActiveCampaign **hosted** account (trial or paid).
+
+## That is all for now
