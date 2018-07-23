@@ -1,27 +1,38 @@
-from Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
-from ActiveCampaign import ActiveCampaign
-import json
-import urllib2, urllib
+from .ActiveCampaign import (
+    ActiveCampaign,
+    fmt_params,
+    fmt_noparams
+)
+import requests as rq
+
 
 class Design(ActiveCampaign):
 
     def __init__(self, url, api_key):
         self.url = url
         self.api_key = api_key
-        ActiveCampaign.__init__(self, url, api_key)
+        super(Design, self).__init__(url, api_key)
 
     def edit(self, params, post_data):
-        request_url = '%s&api_action=branding_edit&api_output=%s' % (self.url, self.output)
-        post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
-        response = json.loads(urllib2.urlopen(req).read())
+        rq_url = fmt_noparams(
+            self.url,
+            'branding_edit',
+            self.output
+        )
+        response = rq.post(rq_url, data=post_data)
         return response
-        
+
     def view(self, params, post_data):
-        request_url = '%s&api_action=branding_view&api_output=%s' % (self.url, self.output)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        rq_url = fmt_noparams(
+            self.url,
+            'branding_view',
+            self.output
+        )
+        response = rq.get(rq_url)
         return response
-        
+
+
+"""
 if __name__ == '__main__':
     ac = ActiveCampaign(ACTIVECAMPAIGN_URL,  ACTIVECAMPAIGN_API_KEY)
     
@@ -44,3 +55,4 @@ if __name__ == '__main__':
     
     ## view
     print ac.api('branding/view')
+"""

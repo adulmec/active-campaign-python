@@ -1,30 +1,27 @@
 ## Installation
 
-You can install **active-campaign-python** by downloading the source.
+You can install **active-campaign-python** from pypi
 
-[Click here to download the source (.zip)](https://github.com/adulmec/active-campaign-python/zipball/master) which includes all dependencies.
-
-`from includes.ActiveCampaign import ActiveCampaign`
-
-Fill in your URL and API Key in the `includes/Config.py` file, and you are good to go!
+`pip install active-campaign-python`
 
 ## Example Usage
 
-### includes/Config.py
-`from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY`
-
-### examples.py
-
 <pre>
-from includes.ActiveCampaign import ActiveCampaign
-from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
+from activecampaign import ActiveCampaign
 
-ac = ActiveCampaign(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY)
-print ac.api('account/view')
+# url provided to you by ActiveCampaign
+base_url = '<your url>'
+# api key provided to you by ActiveCampaign
+api_key = '<your api_key>'
+
+ac = ActiveCampaign(base_url,  api_key)
+print(ac.api('account/view'))
 </pre>
 
-See our [examples file](https://github.com/adulmec/active-campaign-python/blob/master/examples.py) or the comments from files in **includes** folder  for more in-depth samples.
+Each of the endpoint subclasses have comments at the bottom
 
 ## Prerequisites
 
 1. A valid ActiveCampaign **hosted** account (trial or paid).
+
+## That is all for now

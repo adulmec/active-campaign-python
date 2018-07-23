@@ -1,2 +1,5 @@
 # Compiled Python Files
 *.pyc
+*.swp
+dist/*
+*.egg-info/
